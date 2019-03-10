@@ -1,7 +1,11 @@
 FROM google/cloud-sdk:alpine
 
 #Install OpenJDK
-RUN apk --update --no-cache add openjdk7-jre
+RUN apk add --update --no-cache openjdk8 curl tar bash \
+	&& rm -rf /var/lib/apt/lists/* \
+    /var/cache/apk/* \
+    /usr/share/man \
+    /tmp/*
 
 #Install only Java App Engine
 RUN gcloud components install app-engine-java
